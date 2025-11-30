@@ -444,13 +444,18 @@ export default function Haimoji() {
       )}
 
       {/* Footer */}
-      <footer className="bg-white border-t border-pink-100 py-10 mt-auto">
+         <footer className="bg-white border-t border-pink-100 py-10 mt-auto">
         <div className="max-w-6xl mx-auto px-4 text-center space-y-2">
           <p className="text-pink-500 font-bold flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4" /> Haimoji
           </p>
           <p className="text-gray-400 text-sm">
             Koleksi Kaomoji & Emoji paling <span className="text-pink-400">aesthetic</span> untukmu. 
+          </p>
+
+          {/* credit line */}
+          <p className="text-xs text-gray-500 mt-2">
+            Developed by Ghiffa © 2023
           </p>
         </div>
       </footer>
