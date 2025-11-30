@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Star, Smile, Copy, Menu, X, Sparkles, Heart, Zap, Ghost } from 'lucide-react';
 
 // DATA MASIF - DIKURASI DARI REFERENSI POPULER + TAMBAHAN BARU
@@ -206,6 +206,8 @@ export default function Haimoji() {
   const [searchQuery, setSearchQuery] = useState('');
   const [toastMessage, setToastMessage] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState(null);
+  const [showInstallModal, setShowInstallModal] = useState(false);
 
   // Filter logic yang dioptimalkan dengan useMemo
   const filteredData = useMemo(() => {
@@ -226,6 +228,41 @@ export default function Haimoji() {
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 2000);
+  };
+
+  // PWA Install Prompt
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+      setShowInstallModal(true);
+    };
+
+    const handleAppInstalled = () => {
+      setInstallPrompt(null);
+      setShowInstallModal(false);
+      showToast('Aplikasi berhasil diinstall!');
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === 'accepted') {
+        showToast('Installing...');
+      }
+      setInstallPrompt(null);
+      setShowInstallModal(false);
+    }
   };
 
   // Helper untuk Chips
@@ -459,6 +496,37 @@ export default function Haimoji() {
           </p>
         </div>
       </footer>
+
+      {/* Install Modal */}
+      {showInstallModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-6 max-w-sm mx-4 shadow-2xl border border-pink-100">
+            <div className="text-center space-y-4">
+              <div className="bg-gradient-to-tr from-pink-500 to-purple-500 p-3 rounded-xl w-fit mx-auto">
+                <Sparkles className="text-white w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800">Install Haimoji</h3>
+              <p className="text-gray-600 text-sm">
+                Tambahkan Haimoji ke layar utama untuk akses cepat dan offline!
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowInstallModal(false)}
+                  className="flex-1 py-2 px-4 text-gray-600 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors"
+                >
+                  Nanti
+                </button>
+                <button
+                  onClick={handleInstallClick}
+                  className="flex-1 py-2 px-4 bg-pink-500 text-white rounded-full font-semibold hover:bg-pink-600 transition-colors"
+                >
+                  Install
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* CSS Animations */}
       <style>{`
