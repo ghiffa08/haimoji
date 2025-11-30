@@ -354,7 +354,7 @@ export default function Haimoji() {
             <h2 className="text-3xl md:text-5xl font-black text-gray-800 tracking-tight">
               Sesuaikan <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">Mood Mu</span>
             </h2>
-            <p className="text-gray-500 text-lg font-medium">Klik untuk copy. 100% Imut.</p>
+            <p className="text-gray-500 text-lg font-medium">Klik untuk copy.</p>
           </div>
 
           {/* Chips Filter */}
