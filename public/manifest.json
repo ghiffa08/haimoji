@@ -1,0 +1,21 @@
+{
+  "name": "Haimoji - Koleksi Emoji & Kaomoji Aesthetic",
+  "short_name": "Haimoji",
+  "description": "Koleksi Kaomoji & Emoji paling aesthetic untukmu.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdf2f8",
+  "theme_color": "#ec4899",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
