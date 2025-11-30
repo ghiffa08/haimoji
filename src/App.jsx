@@ -67,7 +67,8 @@ const EMOJI_DATA = [
   { char: "☆ ～ ('▽^人)", category: "kaomoji", tags: ["greeting", "wave", "happy", "friendly"] },
   { char: "(✧ω✧)", category: "kaomoji", tags: ["sparkly eyes", "amazed", "excited", "cute"] },
   { char: "◝(⁰▿⁰)◜✧˖°", category: "kaomoji", tags: ["happy", "sparkle", "excited", "joy"] },
-  
+  { char: "ദ്ദി◝ ⩊ ◜)", category: "kaomoji", tags: ["cute", "happy", "smile", "aesthetic"] },
+
   // --- KAOMOJI: HUG & LOVE (Diperluas) ---
   { char: "(づ｡◕‿‿◕｡)づ", category: "kaomoji", tags: ["hug", "peluk", "cute", "affection"] },
   { char: "⊂(・▽・⊂)", category: "kaomoji", tags: ["hug", "peluk", "happy", "embrace"] },
